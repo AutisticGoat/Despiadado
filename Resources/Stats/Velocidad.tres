@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Stat" format=3 uid="uid://c36m6jmhj11cw"]
+
+[ext_resource type="Script" uid="uid://werjd3sya5e6" path="res://Scripts/Stats/stat.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "speed"
+display_name = "Velocidad"
+base_value = 10.0
+max_value = 50
+metadata/_custom_type_script = "uid://werjd3sya5e6"
