@@ -12,7 +12,7 @@ var attack_state = false
 #Función llamada cuando el nodo es inicializado
 func _ready() -> void:
 	Stats.add_modifier("healthpoints", "test", "flat", 10)
-	Stats.add_modifier("jumpheight", "test", "flat", 2) 
+	Stats.add_modifier("jumpheight", "test", "flat", 0.5) 
 
 #Función de prueba para ajustar la velocidad del personaje
 func SetSpeed(value: float) -> void:

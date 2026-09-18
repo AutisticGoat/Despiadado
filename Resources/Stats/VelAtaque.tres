@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Stat" format=3 uid="uid://d2vy3xj2c4081"]
+
+[ext_resource type="Script" uid="uid://werjd3sya5e6" path="res://Scripts/Stats/stat.gd" id="1_npos2"]
+
+[resource]
+script = ExtResource("1_npos2")
+id = "attackspeed"
+display_name = "Vel. de ataque"
+base_value = 1.0
+min_value = 0.5
+metadata/_custom_type_script = "uid://werjd3sya5e6"

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bpl7ydc3qfvo7" path="res://Scripts/Character.gd" id="2_epypp"]
 [ext_resource type="Texture2D" uid="uid://c7x0kom6e3i3d" path="res://Graphics/Character/Ataque_0001-Sheet.png" id="2_hqns4"]
+[ext_resource type="Script" uid="uid://vk4f32j42bls" path="res://Scripts/Martillo.gd" id="2_ta5nu"]
 [ext_resource type="Script" uid="uid://chcoyj2t3rixr" path="res://Scripts/Stats/stat_component.gd" id="3_epypp"]
 [ext_resource type="Texture2D" uid="uid://cixxmmjukiw1q" path="res://Graphics/Character/Pepe 3_0001-Sheet.png" id="3_x0ka3"]
 [ext_resource type="Texture2D" uid="uid://ctgx6cc7qeocc" path="res://Graphics/Character/Salto_0001-Sheet.png" id="4_0h7mo"]
@@ -14,6 +15,13 @@
 [ext_resource type="Resource" uid="uid://btu3xjpikcgwg" path="res://Resources/Stats/Daño.tres" id="10_0h7mo"]
 [ext_resource type="Resource" uid="uid://bfekdau4oo0wi" path="res://Resources/Stats/Defensa.tres" id="11_nr8wp"]
 [ext_resource type="Resource" uid="uid://buvofaqd8uwnq" path="res://Resources/Stats/AlturaSalto.tres" id="12_nr8wp"]
+[ext_resource type="Resource" uid="uid://d2vy3xj2c4081" path="res://Resources/Stats/VelAtaque.tres" id="14_flf07"]
+[ext_resource type="Texture2D" uid="uid://3oootb7uy4pe" path="res://Graphics/Enemies/Sprite-0001.png" id="15_d2bti"]
+[ext_resource type="Script" uid="uid://c42nw5p3vgl7j" path="res://Scripts/enemigo.gd" id="17_k73cj"]
+[ext_resource type="Texture2D" uid="uid://ccavwem3cfoy5" path="res://Graphics/Character/kotryflownobg.png" id="19_rjqkl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4e2c4"]
+size = Vector2(14, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ta5nu"]
 atlas = ExtResource("2_hqns4")
@@ -157,6 +165,52 @@ size = Vector2(19, 24.749979)
 script = ExtResource("4_0hol4")
 metadata/_custom_type_script = "uid://werjd3sya5e6"
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mryly"]
+atlas = ExtResource("15_d2bti")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kq1c5"]
+atlas = ExtResource("15_d2bti")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ornx7"]
+atlas = ExtResource("15_d2bti")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnnru"]
+atlas = ExtResource("15_d2bti")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_540hr"]
+atlas = ExtResource("15_d2bti")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_drfsk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mryly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kq1c5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ornx7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnnru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_540hr")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_drfsk"]
+size = Vector2(9.333332, 8.444435)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t3t8y"]
 size = Vector2(1447, 13)
 
@@ -167,21 +221,29 @@ position = Vector2(18, 443)
 scale = Vector2(2, 2)
 script = ExtResource("2_epypp")
 
+[node name="MartilloCollider" type="CollisionShape2D" parent="Jugador" unique_id=1219703311]
+position = Vector2(16, 6.5)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_4e2c4")
+debug_color = Color(0.9449663, 0.23283201, 1.92523e-07, 0.41960785)
+script = ExtResource("2_ta5nu")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Jugador" unique_id=1207581220]
 position = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_4qa0u")
 animation = &"Idle"
+frame_progress = 0.20063162
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador" unique_id=1362344260]
 texture_filter = 1
-position = Vector2(0.49999666, -0.6250315)
+position = Vector2(0.5000038, -0.5000012)
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_4qa0u")
 debug_color = Color(0, 0.5950001, 0.7, 0.8039216)
 
 [node name="StatsComponent" type="Node" parent="Jugador" unique_id=1339999195]
 script = ExtResource("3_epypp")
-initial_stats = Array[ExtResource("4_0hol4")]([SubResource("Resource_q6r6c"), ExtResource("6_4d7sh"), ExtResource("6_rj586"), ExtResource("10_0h7mo"), ExtResource("11_nr8wp"), ExtResource("12_nr8wp")])
+initial_stats = Array[ExtResource("4_0hol4")]([SubResource("Resource_q6r6c"), ExtResource("6_4d7sh"), ExtResource("6_rj586"), ExtResource("10_0h7mo"), ExtResource("11_nr8wp"), ExtResource("12_nr8wp"), ExtResource("14_flf07")])
 metadata/_custom_type_script = "uid://chcoyj2t3rixr"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Jugador" unique_id=1347650445]
@@ -204,8 +266,31 @@ script = ExtResource("7_d21ai")
 Stats = NodePath("../../StatsComponent")
 metadata/_edit_use_anchors_ = true
 
+[node name="Camera2D" type="Camera2D" parent="Jugador" unique_id=1675345833]
+
+[node name="Enemigo" type="CharacterBody2D" parent="." unique_id=426573495]
+position = Vector2(369, 449.00003)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("17_k73cj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemigo" unique_id=948673066]
+sprite_frames = SubResource("SpriteFrames_drfsk")
+frame = 4
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo" unique_id=696812811]
+position = Vector2(0.3333435, 5.666626)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_drfsk")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1880465742]
+position = Vector2(4, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1111823155]
 position = Vector2(723.5, 473.5)
 shape = SubResource("RectangleShape2D_t3t8y")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D" unique_id=617233228]
+position = Vector2(3.5, 0.4999838)
+scale = Vector2(1, 0.019083358)
+texture = ExtResource("19_rjqkl")
