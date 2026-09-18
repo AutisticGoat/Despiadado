@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bpl7ydc3qfvo7" path="res://Scripts/Character.gd" id="2_epypp"]
 [ext_resource type="Texture2D" uid="uid://c7x0kom6e3i3d" path="res://Graphics/Character/Ataque_0001-Sheet.png" id="2_hqns4"]
-[ext_resource type="Script" uid="uid://vk4f32j42bls" path="res://Scripts/Martillo.gd" id="2_ta5nu"]
 [ext_resource type="Script" uid="uid://chcoyj2t3rixr" path="res://Scripts/Stats/stat_component.gd" id="3_epypp"]
 [ext_resource type="Texture2D" uid="uid://cixxmmjukiw1q" path="res://Graphics/Character/Pepe 3_0001-Sheet.png" id="3_x0ka3"]
 [ext_resource type="Texture2D" uid="uid://ctgx6cc7qeocc" path="res://Graphics/Character/Salto_0001-Sheet.png" id="4_0h7mo"]
@@ -20,8 +19,7 @@
 [ext_resource type="Script" uid="uid://c42nw5p3vgl7j" path="res://Scripts/enemigo.gd" id="17_k73cj"]
 [ext_resource type="Texture2D" uid="uid://ccavwem3cfoy5" path="res://Graphics/Character/kotryflownobg.png" id="19_rjqkl"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4e2c4"]
-size = Vector2(14, 10)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwhy8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ta5nu"]
 atlas = ExtResource("2_hqns4")
@@ -221,18 +219,17 @@ position = Vector2(18, 443)
 scale = Vector2(2, 2)
 script = ExtResource("2_epypp")
 
-[node name="MartilloCollider" type="CollisionShape2D" parent="Jugador" unique_id=1219703311]
-position = Vector2(16, 6.5)
-scale = Vector2(0.99999994, 0.99999994)
-shape = SubResource("RectangleShape2D_4e2c4")
-debug_color = Color(0.9449663, 0.23283201, 1.92523e-07, 0.41960785)
-script = ExtResource("2_ta5nu")
+[node name="AreaAttack" type="Area2D" parent="Jugador" unique_id=1841114080]
+position = Vector2(7.64, 1.98)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador/AreaAttack" unique_id=862295897]
+shape = SubResource("RectangleShape2D_bwhy8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Jugador" unique_id=1207581220]
 position = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_4qa0u")
-animation = &"Idle"
-frame_progress = 0.20063162
+animation = &"Attack"
+frame_progress = 0.8795809
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador" unique_id=1362344260]
 texture_filter = 1
@@ -291,6 +288,6 @@ position = Vector2(723.5, 473.5)
 shape = SubResource("RectangleShape2D_t3t8y")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D" unique_id=617233228]
-position = Vector2(3.5, 0.4999838)
-scale = Vector2(1, 0.019083358)
+position = Vector2(3.5, 76.84373)
+scale = Vector2(1, 0.120875016)
 texture = ExtResource("19_rjqkl")
