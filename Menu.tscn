@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://daiksr5kkdtgb"]
+
+[ext_resource type="Texture2D" uid="uid://cbv0esiurajfd" path="res://Graphics/Menu/Menu.png" id="1_5yleq"]
+[ext_resource type="Script" uid="uid://dwm4fi5bbfv5t" path="res://Scripts/Buttons/BotonSalir.gd" id="2_ylpcl"]
+[ext_resource type="Script" uid="uid://rdkruv6kve67" path="res://scripts/buttons/iniciar.gd" id="3_cx167"]
+
+[node name="Menu" type="Node2D" unique_id=52962420]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=953958833]
+position = Vector2(319.99997, 240)
+scale = Vector2(0.39999998, 0.53751403)
+texture = ExtResource("1_5yleq")
+
+[node name="Salir" type="Button" parent="." unique_id=2063896768]
+offset_left = 5.0
+offset_top = 275.0
+offset_right = 121.0
+offset_bottom = 307.0
+text = "Salir"
+script = ExtResource("2_ylpcl")
+
+[node name="Opciones" type="Button" parent="." unique_id=2055666930]
+offset_left = 5.0
+offset_top = 235.0
+offset_right = 121.0
+offset_bottom = 267.0
+text = "Opciones"
+
+[node name="Iniciar" type="Button" parent="." unique_id=1699070362]
+offset_left = 5.0
+offset_top = 194.0
+offset_right = 121.0
+offset_bottom = 226.0
+text = "Iniciar"
+script = ExtResource("3_cx167")
