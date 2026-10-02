@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://daiksr5kkdtgb"]
 
 [ext_resource type="Texture2D" uid="uid://cbv0esiurajfd" path="res://Graphics/Menu/Menu.png" id="1_5yleq"]
+[ext_resource type="Script" uid="uid://dbxm6y3clcuvy" path="res://Scripts/Control.gd" id="2_cx167"]
 [ext_resource type="Script" uid="uid://dwm4fi5bbfv5t" path="res://Scripts/Buttons/BotonSalir.gd" id="2_ylpcl"]
-[ext_resource type="Script" uid="uid://rdkruv6kve67" path="res://scripts/buttons/iniciar.gd" id="3_cx167"]
+[ext_resource type="Script" uid="uid://rdkruv6kve67" path="res://Scripts/Buttons/iniciar.gd" id="3_cx167"]
+[ext_resource type="AudioStream" uid="uid://dwd4pciy8rmkn" path="res://Resources/SFX/Confirmar.ogg" id="3_n4eug"]
+[ext_resource type="AudioStream" uid="uid://d3prkqnqqlvg" path="res://Resources/SFX/Selección.ogg" id="4_dlksc"]
 
 [node name="Menu" type="Node2D" unique_id=52962420]
 
@@ -11,25 +14,38 @@ position = Vector2(319.99997, 240)
 scale = Vector2(0.39999998, 0.53751403)
 texture = ExtResource("1_5yleq")
 
-[node name="Salir" type="Button" parent="." unique_id=2063896768]
-offset_left = 5.0
-offset_top = 275.0
-offset_right = 121.0
-offset_bottom = 307.0
-text = "Salir"
-script = ExtResource("2_ylpcl")
+[node name="Control" type="Control" parent="." unique_id=129678636]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 319.99997
+offset_top = 240.0
+offset_right = 359.99997
+offset_bottom = 280.0
+script = ExtResource("2_cx167")
 
-[node name="Opciones" type="Button" parent="." unique_id=2055666930]
-offset_left = 5.0
-offset_top = 235.0
-offset_right = 121.0
-offset_bottom = 267.0
-text = "Opciones"
+[node name="SFXConfirmar" type="AudioStreamPlayer2D" parent="Control" unique_id=66327057]
+stream = ExtResource("3_n4eug")
 
-[node name="Iniciar" type="Button" parent="." unique_id=1699070362]
-offset_left = 5.0
-offset_top = 194.0
-offset_right = 121.0
-offset_bottom = 226.0
+[node name="SFXSelección" type="AudioStreamPlayer2D" parent="Control" unique_id=746318947]
+stream = ExtResource("4_dlksc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1588541287]
+layout_mode = 0
+offset_left = -314.99997
+offset_top = -38.0
+offset_right = -196.99997
+offset_bottom = 89.0
+
+[node name="Iniciar" type="Button" parent="Control/VBoxContainer" unique_id=1699070362]
+layout_mode = 2
 text = "Iniciar"
 script = ExtResource("3_cx167")
+
+[node name="Opciones" type="Button" parent="Control/VBoxContainer" unique_id=2055666930]
+layout_mode = 2
+text = "Opciones"
+
+[node name="Salir" type="Button" parent="Control/VBoxContainer" unique_id=2063896768]
+layout_mode = 2
+text = "Salir"
+script = ExtResource("2_ylpcl")
