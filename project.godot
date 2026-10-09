@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Despiadado: Las fauces de la tierra"
-run/main_scene="uid://daiksr5kkdtgb"
+run/main_scene="uid://cmwdw8kgbef6b"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,6 +21,10 @@ window/size/viewport_width=640
 window/size/viewport_height=480
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[global_group]
+
+Jugador=""
 
 [input]
 

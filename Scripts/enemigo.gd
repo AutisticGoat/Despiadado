@@ -3,6 +3,7 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
+@onready var jugador = get_tree().get_first_node_in_group("Jugador")
 @onready var Anim = $AnimatedSprite2D
 
 var waitFrames = 0
@@ -20,8 +21,15 @@ func _physics_process(delta: float) -> void:
 		velocity.y = -100 * 5
 		waitFrames = 60
 
+	print(abs(jugador.position.x - position.x))
+
+	if (abs(jugador.position.x - position.x)) <= 50:
+		print(position.direction_to(jugador.position).x)
+		
+		print("Jugador cerca de enemigo, iniciando retirada")
+		dir = -position.direction_to(jugador.position).x
+
 	if not is_on_floor():
-		print("DIRECCIÓN: ", dir)
 		velocity.y += get_gravity().y * 5 * delta
 		velocity.x = dir * 200
 	else:
@@ -29,7 +37,8 @@ func _physics_process(delta: float) -> void:
 	# elif waitFrames == 0:
 	# 	velocity.x = 0
 	
-	print(waitFrames)
+	
+
 
 	# if Anim.frame == 3:
 	# 	Anim.Stomp
