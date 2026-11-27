@@ -2,6 +2,31 @@
 
 [ext_resource type="Script" uid="uid://c42nw5p3vgl7j" path="res://Scripts/enemigo.gd" id="1_8vf1t"]
 [ext_resource type="Texture2D" uid="uid://3oootb7uy4pe" path="res://Graphics/Enemies/Sprite-0001.png" id="2_4pqw1"]
+[ext_resource type="Texture2D" uid="uid://edmyqgdjlpfu" path="res://Graphics/Enemies/slime muerto.png" id="2_uh6se"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6f5d"]
+atlas = ExtResource("2_uh6se")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmveb"]
+atlas = ExtResource("2_uh6se")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wwia"]
+atlas = ExtResource("2_uh6se")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndlan"]
+atlas = ExtResource("2_uh6se")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggh5e"]
+atlas = ExtResource("2_uh6se")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wq8rg"]
+atlas = ExtResource("2_uh6se")
+region = Rect2(0, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mryly"]
 atlas = ExtResource("2_4pqw1")
@@ -25,6 +50,29 @@ region = Rect2(0, 128, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_drfsk"]
 animations = [{
+"frames": [{
+"duration": 0.01,
+"texture": SubResource("AtlasTexture_l6f5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmveb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wwia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndlan")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggh5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wq8rg")
+}],
+"loop": 1,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mryly")
@@ -55,8 +103,8 @@ script = ExtResource("1_8vf1t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=484775481]
 sprite_frames = SubResource("SpriteFrames_drfsk")
-frame = 4
-frame_progress = 1.0
+animation = &"death"
+frame_progress = 0.28843993
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1572768160]
 position = Vector2(0.3333435, 5.666626)

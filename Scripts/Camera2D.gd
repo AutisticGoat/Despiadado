@@ -1,34 +1,44 @@
 extends Camera2D
 
-@export var decay := 0.8  # Speeding up the fade out
-@export var max_offset := Vector2(100, 75)  # Max horizontal/vertical shake in pixels
-@export var max_roll := 0.1  # Max rotation in radians
-@export var trauma_power := 2.0  # Multiplier for non-linear shake curve
+## Temblor de cámara por "trauma": add_trauma(0..1) lo dispara y se desvanece solo.
+## La intensidad crece de forma no lineal (trauma ^ trauma_power): golpes pequeños apenas se notan.
+
+@export var decay := 1.5             # cuánto trauma se pierde por segundo
+@export var max_offset := Vector2(12.0, 9.0)  # desplazamiento máximo en píxeles
+@export var max_roll := 0.03         # rotación máxima en radianes
+@export var trauma_power := 2.0      # curva no lineal del temblor
+@export var noise_speed := 60.0      # qué tan rápido recorre el ruido (más = temblor más "nervioso")
 
 var trauma := 0.0
 var noise := FastNoiseLite.new()
-var noise_y := 0
+var noise_t := 0.0
+var base_offset := Vector2.ZERO      # el offset que tiene la cámara en el editor; el temblor se suma encima
+
 
 func _ready() -> void:
-    randomize()
-    noise.seed = randi()
-    noise.frequency = 0.5
+	base_offset = offset
+	ignore_rotation = false          # sin esto, max_roll no tiene efecto
+	noise.seed = randi()
+	noise.frequency = 0.5
+
 
 func add_trauma(amount: float) -> void:
-    trauma = min(trauma + amount, 1.0)
+	trauma = minf(trauma + amount, 1.0)
+
 
 func _process(delta: float) -> void:
-    if trauma > 0:
-        trauma = max(trauma - decay * delta, 0)
-        shake()
-    else:
-        offset = Vector2.ZERO
-        rotation = 0
+	if trauma > 0.0:
+		trauma = maxf(trauma - decay * delta, 0.0)
+		_shake(delta)
+	else:
+		offset = base_offset
+		rotation = 0.0
 
-func shake() -> void:
-    var amt = pow(trauma, trauma_power)
-    noise_y += 1
-    # Smooth noise-based offsets
-    offset.x = max_offset.x * amt * noise.get_noise_2d(noise_y, 0)
-    offset.y = max_offset.y * amt * noise.get_noise_2d(0, noise_y)
-    rotation = max_roll * amt * noise.get_noise_2d(noise_y, noise_y)
+
+func _shake(delta: float) -> void:
+	var amount := pow(trauma, trauma_power)
+	noise_t += delta * noise_speed
+	offset = base_offset + Vector2(
+		max_offset.x * amount * noise.get_noise_2d(noise_t, 0.0),
+		max_offset.y * amount * noise.get_noise_2d(0.0, noise_t))
+	rotation = max_roll * amount * noise.get_noise_2d(noise_t, noise_t)

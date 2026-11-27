@@ -13,7 +13,9 @@ class_name Stat
 ## Valor base, sin modificadores aplicados
 @export var base_value: float = 0.0
 
-## Valor mínimo y máximo permitidos (clamp). Si min == max, no se aplica clamp.
+## Límites del valor final.
+## - min_value se aplica SIEMPRE como piso.
+## - max_value solo se aplica si es mayor que min_value (si no, no hay tope).
 @export var min_value: float = 0.0
 @export var max_value: float = 0.0
 
@@ -33,8 +35,9 @@ func get_final_value() -> float:
 
 	var result := (base_value + flat_sum) * (1.0 + percent_sum)
 
+	result = maxf(result, min_value)
 	if max_value > min_value:
-		result = clampf(result, min_value, max_value)
+		result = minf(result, max_value)
 
 	return result
 

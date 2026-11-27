@@ -2,8 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://cbv0esiurajfd" path="res://Graphics/Menu/Menu.png" id="1_5yleq"]
 [ext_resource type="Script" uid="uid://dbxm6y3clcuvy" path="res://Scripts/Control.gd" id="2_cx167"]
-[ext_resource type="Script" uid="uid://dwm4fi5bbfv5t" path="res://Scripts/Buttons/BotonSalir.gd" id="2_ylpcl"]
-[ext_resource type="Script" uid="uid://rdkruv6kve67" path="res://Scripts/Buttons/iniciar.gd" id="3_cx167"]
 [ext_resource type="AudioStream" uid="uid://dwd4pciy8rmkn" path="res://Resources/SFX/Confirmar.ogg" id="3_n4eug"]
 [ext_resource type="AudioStream" uid="uid://d3prkqnqqlvg" path="res://Resources/SFX/Selección.ogg" id="4_dlksc"]
 
@@ -39,7 +37,6 @@ offset_bottom = 89.0
 [node name="Iniciar" type="Button" parent="Control/VBoxContainer" unique_id=1699070362]
 layout_mode = 2
 text = "Iniciar"
-script = ExtResource("3_cx167")
 
 [node name="Opciones" type="Button" parent="Control/VBoxContainer" unique_id=2055666930]
 layout_mode = 2
@@ -48,4 +45,3 @@ text = "Opciones"
 [node name="Salir" type="Button" parent="Control/VBoxContainer" unique_id=2063896768]
 layout_mode = 2
 text = "Salir"
-script = ExtResource("2_ylpcl")

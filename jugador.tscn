@@ -15,8 +15,11 @@
 [ext_resource type="Resource" uid="uid://d2vy3xj2c4081" path="res://Resources/Stats/VelAtaque.tres" id="13_vpxur"]
 [ext_resource type="Script" uid="uid://c5sk25dqrj51k" path="res://Scripts/LabelHP.gd" id="14_fblqx"]
 [ext_resource type="Script" uid="uid://cja5y4f8doqju" path="res://Scripts/LabelVelocidad.gd" id="15_sjv2d"]
+[ext_resource type="Script" uid="uid://h2wsv86if775" path="res://Scripts/ExperienceComponent.gd" id="16_75jh1"]
+[ext_resource type="Script" uid="uid://hu1dnoshfkn0" path="res://Scripts/Camera2D.gd" id="17_cam2d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bwhy8"]
+size = Vector2(20, 24.02)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ta5nu"]
 atlas = ExtResource("2_75jh1")
@@ -156,18 +159,21 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4qa0u"]
 size = Vector2(19, 24.749979)
 
-[sub_resource type="Resource" id="Resource_q6r6c"]
-script = ExtResource("7_4g2as")
-metadata/_custom_type_script = "uid://werjd3sya5e6"
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt1"]
+size = Vector2(9, 14)
 
 [node name="Jugador" type="CharacterBody2D" unique_id=1027360617 groups=["Jugador"]]
 scale = Vector2(2, 2)
+collision_layer = 2
 script = ExtResource("1_pn0r8")
 
 [node name="AreaAttack" type="Area2D" parent="." unique_id=1376705502]
-position = Vector2(7.64, 1.98)
+position = Vector2(18.5, 1.98)
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaAttack" unique_id=2108698593]
+position = Vector2(-8, -1.9899998)
 shape = SubResource("RectangleShape2D_bwhy8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=913926004]
@@ -183,29 +189,45 @@ scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_4qa0u")
 debug_color = Color(0, 0.5950001, 0.7, 0.8039216)
 
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1649211301 groups=["hurtbox_jugador"]]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1649211302]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_hurt1")
+debug_color = Color(1, 0.1, 0.1, 0.45)
+
 [node name="StatsComponent" type="Node" parent="." unique_id=2003487550]
 script = ExtResource("6_hns4q")
-initial_stats = Array[ExtResource("7_4g2as")]([SubResource("Resource_q6r6c"), ExtResource("8_otqpa"), ExtResource("9_nmcbk"), ExtResource("10_janri"), ExtResource("11_3ook8"), ExtResource("12_s7luq"), ExtResource("13_vpxur")])
+initial_stats = Array[ExtResource("7_4g2as")]([ExtResource("8_otqpa"), ExtResource("9_nmcbk"), ExtResource("10_janri"), ExtResource("11_3ook8"), ExtResource("12_s7luq"), ExtResource("13_vpxur")])
 metadata/_custom_type_script = "uid://chcoyj2t3rixr"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=398452746]
 
 [node name="HP" type="Label" parent="CanvasLayer" unique_id=737582231 node_paths=PackedStringArray("Stats")]
-offset_left = 1.0
-offset_top = 28.0
-offset_right = 41.0
-offset_bottom = 51.0
+offset_top = 2.0
+offset_right = 40.0
+offset_bottom = 25.0
 script = ExtResource("14_fblqx")
 Stats = NodePath("../../StatsComponent")
 metadata/_edit_use_anchors_ = true
 
 [node name="Velocidad" type="Label" parent="CanvasLayer" unique_id=403957397 node_paths=PackedStringArray("Stats")]
 offset_left = 1.0
-offset_top = 1.0
+offset_top = 25.0
 offset_right = 41.0
-offset_bottom = 24.0
+offset_bottom = 48.0
 script = ExtResource("15_sjv2d")
 Stats = NodePath("../../StatsComponent")
-metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=880386430]
+offset = Vector2(0, -97.29)
+script = ExtResource("17_cam2d")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=163480221]
+volume_db = 2.549
+
+[node name="ExperienceComponent" type="Node" parent="." unique_id=1508681991]
+script = ExtResource("16_75jh1")
+metadata/_custom_type_script = "uid://h2wsv86if775"
